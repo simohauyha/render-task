@@ -1,0 +1,40 @@
+# Название нашего автоматизированного процесса
+name: Run Puppeteer Script on a Schedule
+
+# Секция "on" определяет, КОГДА запускать скрипт
+on:
+  schedule:
+    # Запускать каждые 14 минут. Это стандартный cron-синтаксис.
+    - cron: '*/14 * * * *'
+  # Эта строчка позволяет запустить процесс вручную из интерфейса GitHub для теста
+  workflow_dispatch:
+
+# Секция "jobs" описывает, ЧТО ДЕЛАТЬ
+jobs:
+  run-script:
+    # Запускать на последней версии Ubuntu (это виртуальный сервер)
+    runs-on: ubuntu-latest
+
+    # "steps" - это шаги, которые нужно выполнить
+    steps:
+      # Шаг 1: Скачать код из нашего репозитория на виртуальный сервер
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      # Шаг 2: Установить Node.js на виртуальный сервер
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Используем стабильную версию Node.js
+
+      # Шаг 3: Установить зависимости проекта (включая Puppeteer)
+      - name: Install dependencies
+        run: npm install
+
+      # Шаг 4: Установить системные библиотеки, которые нужны браузеру
+      - name: Install system dependencies for Puppeteer
+        run: sudo apt-get update && sudo apt-get install -y libgbm-dev libnss3 libx11-xcb1 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0
+
+      # Шаг 5: Запустить наш основной скрипт
+      - name: Run the script
+        run: node index.js
