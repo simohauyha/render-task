@@ -13,7 +13,7 @@ async function runTask() {
     console.log('  - Запускаю Puppeteer в headless режиме...');
     browser = await puppeteer.launch({
       // На сервере ВСЕГДА должно быть true, так как нет экрана
-      headless: false, 
+      headless: true, 
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 
