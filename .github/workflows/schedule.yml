@@ -3,10 +3,6 @@ name: Run Puppeteer Script on a Schedule
 
 # Секция "on" определяет, КОГДА запускать скрипт
 on:
-  schedule:
-    # Запускать каждые 14 минут. Это стандартный cron-синтаксис.
-    # - cron: '*/5 * * * *'
-  # Эта строчка позволяет запустить процесс вручную из интерфейса GitHub для теста
   workflow_dispatch:
 
 # Секция "jobs" описывает, ЧТО ДЕЛАТЬ
@@ -25,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Используем стабильную версию Node.js
+          node-version: '20'
 
       # Шаг 3: Установить зависимости проекта (включая Puppeteer)
       - name: Install dependencies
