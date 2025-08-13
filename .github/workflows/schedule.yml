@@ -33,7 +33,7 @@ jobs:
 
       # Шаг 4: Установить системные библиотеки, которые нужны браузеру
       - name: Install system dependencies for Puppeteer
-        run: sudo apt-get update && sudo apt-get install -y libgbm-dev libnss3 libx11-xcb1 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0
+        run: sudo apt-get update && sudo apt-get install -y libgbm-dev libnss3 libx11-xcb1 libxss1 libasound2t64 libatk-bridge2.0-0 libgtk-3-0
 
       # Шаг 5: Запустить наш основной скрипт
       - name: Run the script
