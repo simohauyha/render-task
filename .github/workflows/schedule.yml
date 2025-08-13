@@ -5,7 +5,7 @@ name: Run Puppeteer Script on a Schedule
 on:
   schedule:
     # Запускать каждые 14 минут. Это стандартный cron-синтаксис.
-    - cron: '*/5 * * * *'
+    # - cron: '*/5 * * * *'
   # Эта строчка позволяет запустить процесс вручную из интерфейса GitHub для теста
   workflow_dispatch:
 
